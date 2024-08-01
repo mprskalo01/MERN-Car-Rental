@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "path": "^0.12.7"
+  }
+}
