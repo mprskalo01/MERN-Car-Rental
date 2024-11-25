@@ -1,0 +1,148 @@
+// import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+// import API from '../../../api/api';
+// import { resetReservation } from '../reservation/reservationSlice';
+
+// // Define types
+// interface UserInfo {
+//   name: string
+//   email: string
+//   phoneNumber: string
+//   isAdmin: boolean
+//   password: string
+//   comparePasswords(data: string): Promise<boolean>
+// }
+
+// interface UserState {
+//   loading: boolean;
+//   userInfo: UserInfo | null;
+//   error: string;
+// }
+
+// const user: UserInfo | null = JSON.parse(localStorage.getItem('userInfo') || 'null');
+
+// const initialState: UserState = {
+//   loading: false,
+//   userInfo: user ? user : null,
+//   error: '',
+// };
+
+// interface UserData {
+//   // Define the structure of userData
+//   email: string;
+//   password: string;
+// }
+
+// interface RejectValue {
+//   message: string;
+// }
+
+// export const loginUser = createAsyncThunk<
+//   UserInfo,
+//   UserData,
+//   {
+//     rejectValue: RejectValue;
+//   }
+// >(
+//   'user/loginUser',
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const config = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       };
+//       const { data } = await API.post('api/user/login', userData, config);
+//       if (data) {
+//         localStorage.setItem('userInfo', JSON.stringify(data));
+//       }
+//       return data;
+//     } catch (error: any) {
+//       if (!error.response) {
+//         throw error;
+//       }
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// export const registerUser = createAsyncThunk<
+//   UserInfo,
+//   UserData,
+//   {
+//     rejectValue: RejectValue;
+//   }
+// >(
+//   'user/registerUser',
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const config = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       };
+//       const { data } = await API.post('api/user/register', userData, config);
+//       if (data) {
+//         localStorage.setItem('userInfo', JSON.stringify(data));
+//       }
+//       return data;
+//     } catch (error: any) {
+//       if (!error.response) {
+//         throw error;
+//       }
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// export const logout = createAsyncThunk(
+//   'auth/logout',
+//   async (_, { dispatch }) => {
+//     await localStorage.removeItem('userInfo');
+//     dispatch(reset());
+//     dispatch(resetReservation());
+//   }
+// );
+
+// const userSlice = createSlice({
+//   name: 'user',
+//   initialState,
+//   reducers: {
+//     reset: (state) => {
+//       state.error = '';
+//       state.userInfo = null;
+//     },
+//   },
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(registerUser.pending, (state) => {
+//         state.loading = true;
+//       })
+//       .addCase(registerUser.fulfilled, (state, action: PayloadAction<UserInfo>) => {
+//         state.loading = false;
+//         state.userInfo = action.payload;
+//       })
+//       .addCase(registerUser.rejected, (state, action: PayloadAction<RejectValue | undefined>) => {
+//         state.loading = false;
+//         state.error = action.payload?.message || 'An error occurred!';
+//       })
+//       .addCase(loginUser.pending, (state) => {
+//         state.loading = true;
+//       })
+//       .addCase(loginUser.fulfilled, (state, action: PayloadAction<UserInfo>) => {
+//         state.loading = false;
+//         state.userInfo = action.payload;
+//         state.error = '';
+//       })
+//       .addCase(loginUser.rejected, (state, action: PayloadAction<RejectValue | undefined>) => {
+//         state.loading = false;
+//         state.error = action.payload?.message || 'An error occurred!';
+//       })
+//       .addCase(logout.fulfilled, (state) => {
+//         state.userInfo = null;
+//         state.error = '';
+//       });
+//   },
+// });
+
+// export const { reset } = userSlice.actions;
+// export default userSlice.reducer;

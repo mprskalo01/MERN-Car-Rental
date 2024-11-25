@@ -1,0 +1,42 @@
+// import { configureStore } from '@reduxjs/toolkit';
+// import carCreateReducer from './reducers/car/carCreateSlice';
+// import carDetailsReducer from './reducers/car/carDetailsSlice';
+// import carReducer from './reducers/car/carSlice';
+// import carUpdateReducer from './reducers/car/carUpdateSlice';
+// import reservationApproveReducer from './reducers/reservation/reservationApproveSlice';
+// import reservationDeleteReducer from './reducers/reservation/reservationDeleteSlice';
+// import reservationDetailsReducer from './reducers/reservation/reservationDetailsSlice';
+// import reservationListReducer from './reducers/reservation/reservationListSlice';
+// import reservationReducer from './reducers/reservation/reservationSlice';
+// import reservationToPaidReducer from './reducers/reservation/reservationToPaidSlice';
+// import adminUserDeleteReducer from './reducers/user/adminUserDeleteSlice';
+// import adminUserUpdateReducer from './reducers/user/adminUserUpdateSlice';
+// import userDetailsReducer from './reducers/user/userDetailsSlice';
+// import userListReducer from './reducers/user/userListSlice';
+// import userReducer from './reducers/user/userSlice';
+// import userUpdateReducer from './reducers/user/userSlice';
+
+// export const store = configureStore({
+//   reducer: {
+//     userLogin: userReducer,
+//     userUpdate: userUpdateReducer,
+//     userList: userListReducer,
+//     userAdminUpdate: adminUserUpdateReducer,
+//     userDelete: adminUserDeleteReducer,
+//     userCreate: adminUserUpdateReducer,
+//     userDetails: userDetailsReducer,
+//     carsList: carReducer,
+//     carDetails: carDetailsReducer,
+//     carUpdate: carUpdateReducer,
+//     carCreate: carCreateReducer,
+//     reservationUser: reservationReducer,
+//     reservationList: reservationListReducer,
+//     reservationApprove: reservationApproveReducer,
+//     reservationPaid: reservationToPaidReducer,
+//     reservationDetails: reservationDetailsReducer,
+//     reservationDelete: reservationDeleteReducer,
+//   },
+// });
+
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppDispatch = typeof store.dispatch;

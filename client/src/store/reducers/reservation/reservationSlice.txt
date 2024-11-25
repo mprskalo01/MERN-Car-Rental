@@ -1,0 +1,133 @@
+// import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+// import API from '../../../api/api';
+
+// // Define types
+// interface Reservation {
+//   id: string;
+//   date: string;
+//   // Add other reservation properties as needed
+// }
+
+// interface ReservationsState {
+//   loading: boolean;
+//   reservations: Reservation[];
+//   error: string;
+// }
+
+// interface UserInfo {
+//   token: string;
+//   // Add other user properties as needed
+// }
+
+// interface RootState {
+//   userLogin: {
+//     userInfo: UserInfo;
+//   };
+// }
+
+// interface RejectValue {
+//   message: string;
+// }
+
+// const initialState: ReservationsState = {
+//   loading: false,
+//   reservations: [],
+//   error: '',
+// };
+
+// export const getUserReservation = createAsyncThunk<
+//   Reservation[],
+//   undefined,
+//   { rejectValue: RejectValue; state: RootState }
+// >(
+//   'reservation/getUserReservation',
+//   async (_, { rejectWithValue, getState }) => {
+//     try {
+//       const {
+//         userLogin: { userInfo },
+//       } = getState();
+//       const config = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${userInfo.token}`,
+//         },
+//       };
+//       const { data } = await API.get('api/reservation', config);
+
+//       return data;
+//     } catch (error: any) {
+//       if (!error.response) {
+//         throw error;
+//       }
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// export const createUserReservation = createAsyncThunk<
+//   Reservation[],
+//   Reservation,
+//   { rejectValue: RejectValue; state: RootState }
+// >(
+//   'reservation/createUserReservation',
+//   async (reservationData, { rejectWithValue, getState }) => {
+//     try {
+//       const {
+//         userLogin: { userInfo },
+//       } = getState();
+//       const config = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${userInfo.token}`,
+//         },
+//       };
+//       const { data } = await API.post('api/reservation/create', reservationData, config);
+
+//       return data;
+//     } catch (error: any) {
+//       if (!error.response) {
+//         throw error;
+//       }
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// const reservationSlice = createSlice({
+//   name: 'reservationUser',
+//   initialState,
+//   reducers: {
+//     resetReservation: (state) => {
+//       state.error = '';
+//       state.reservations = [];
+//     },
+//   },
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(getUserReservation.pending, (state) => {
+//         state.loading = true;
+//       })
+//       .addCase(getUserReservation.fulfilled, (state, action: PayloadAction<Reservation[]>) => {
+//         state.loading = false;
+//         state.reservations = action.payload;
+//       })
+//       .addCase(getUserReservation.rejected, (state, action: PayloadAction<RejectValue | undefined>) => {
+//         state.loading = false;
+//         state.error = action.payload?.message || 'An error occurred';
+//       })
+//       .addCase(createUserReservation.pending, (state) => {
+//         state.loading = true;
+//       })
+//       .addCase(createUserReservation.fulfilled, (state, action: PayloadAction<Reservation[]>) => {
+//         state.loading = false;
+//         state.reservations = action.payload;
+//       })
+//       .addCase(createUserReservation.rejected, (state, action: PayloadAction<RejectValue | undefined>) => {
+//         state.loading = false;
+//         state.error = action.payload?.message || 'An error occurred';
+//       });
+//   },
+// });
+
+// export const { resetReservation } = reservationSlice.actions;
+// export default reservationSlice.reducer;
